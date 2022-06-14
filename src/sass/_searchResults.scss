@@ -1,0 +1,125 @@
+.search-results {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  // gap: 2rem;
+}
+
+.results {
+  padding-top: 2rem;
+  list-style: none;
+  margin-bottom: 2rem;
+}
+.otherIcons {
+  font-size: 2rem;
+  stroke: $color-grey-dark-2;
+  width: 1.6rem;
+  // align-self: center;
+  // justify-self: center;
+  &__2 {
+    align-items: center;
+  }
+}
+.sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2 3.5rem;
+  font-size: 1.15rem;
+  color: $color-grey-dark-2;
+  font-weight: 600;
+}
+.sort__item {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.sort__span {
+  display: flex;
+  color: $color-primary;
+  stroke: $color-primary;
+  // align-items: center;
+  // justify-content: end;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 0 2.5rem;
+
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  &__btn {
+    &--prev {
+      // float: left;
+    }
+    &--next {
+      // float: right;
+    }
+    &--last {
+      font-size: 1rem;
+      position: relative;
+      // opacity: 0;
+    }
+  }
+}
+// .search__icon--double {
+//   display: flex;
+//   flex: 1 1;
+//   // flex-wrap: 1;
+//   // position: absolute;
+//   &--2 {
+//     // position: relative;
+//     // right: 120%;
+//   }
+// }
+
+.btn--empty {
+  opacity: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: none;
+
+  padding: 0.8rem 1.2rem;
+  border-radius: 10rem;
+
+  display: flex;
+  align-items: center;
+
+  svg {
+    height: 1.6rem;
+    width: 1.6rem;
+    margin: 0 0.2rem;
+  }
+
+  span {
+    margin: 0 0.4rem;
+  }
+}
+
+.pagination__pages {
+  color: $color-grey-dark-2;
+
+  font-size: 1.3rem;
+  font-weight: 600;
+  // float: center;
+}
+
+.copyright {
+  color: $color-grey-dark-2;
+  font-size: 1.2rem;
+  padding: 0 3.5rem;
+  margin-top: 4rem;
+
+  .twitter-link:link,
+  .twitter-link:visited {
+    color: $color-grey-dark-2;
+  }
+}
