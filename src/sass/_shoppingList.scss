@@ -1,9 +1,10 @@
 .shopping-list-window {
   position: fixed;
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50rem;
+  width: 80rem;
   background-color: white;
   border-radius: 9px;
 
@@ -23,6 +24,17 @@
     border: none;
     background: none;
   }
+}
+.shopping-list__heading--1 {
+  grid-column: 1/2;
+}
+.shopping-list__heading--2 {
+  grid-row: -1/1;
+  grid-column: -2/-1;
+}
+.shopping-list__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 .shopping-list__list {
   overflow-y: auto;
