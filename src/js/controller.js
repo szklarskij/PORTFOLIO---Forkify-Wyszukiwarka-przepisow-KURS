@@ -9,6 +9,7 @@ import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
 import shoppingListView from './views/shoppingListView.js';
+import shoppingListIngView from './views/shoppingListIngView.js';
 // import PaginationView from './views/PaginationView.js';
 
 import 'core-js/stable';
@@ -149,7 +150,16 @@ const controlRemoveIng = function (removeIng) {
 
 const controlShoppingList = function () {
   model.setShoppingList();
+  shoppingListView._status = model.state.shoppingList.length;
   shoppingListView.render(model.state.shoppingList);
+  shoppingListIngView.render(model.state.ingredientsToAdd);
+};
+const controlShoppingListOpen = function () {
+  shoppingListView._status = model.state.shoppingList.length;
+  console.log(shoppingListView._status);
+  // model.setShoppingList();
+  shoppingListView.render(model.state.shoppingList);
+  shoppingListIngView.render(model.state.ingredientsToAdd);
 };
 
 const controlClearShoppingList = function (clear) {
@@ -169,6 +179,7 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
   shoppingListView.addHandlerClearList(controlClearShoppingList);
+  shoppingListView.addHandlerShowList(controlShoppingListOpen);
   addRecipeView.addHandlerUpload(controlAddRecipe);
   addRecipeView.addHandlerAddIng(controlAddIng);
   addRecipeView.addHandlerRemoveIng(controlRemoveIng);

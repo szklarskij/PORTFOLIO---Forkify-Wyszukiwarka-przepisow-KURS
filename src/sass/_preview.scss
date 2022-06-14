@@ -102,4 +102,7 @@
       fill: $color-primary;
     }
   }
+  &::marker {
+    color: red;
+  }
 }

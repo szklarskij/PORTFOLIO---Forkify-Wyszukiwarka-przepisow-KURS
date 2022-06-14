@@ -1,4 +1,5 @@
 import icons from 'url:../../img/icons.svg';
+import { MODAL_CLOSE_SEC } from '../config.js';
 
 export default class View {
   _data;
@@ -90,8 +91,8 @@ export default class View {
     <svg>
       <use href="${icons}#icon-smile"></use>
     </svg>
+    <p>${message}</p>
   </div>
-  <p>${message}</p>
 </div>`;
     if (clear === true) {
       this._clear();
@@ -99,5 +100,30 @@ export default class View {
       document.querySelectorAll('.spinner').forEach(el => el.remove());
     }
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+  showAlert(message = this._message) {
+    const windowAlert = document.querySelector('.alert-window');
+    const overlay = document.querySelector('.overlay');
+
+    const markup = `  <div class="message">
+    <svg>
+      <use href="${icons}#icon-smile"></use>
+    </svg>
+    <p>${message}</p>
+  </div>
+</div>`;
+    overlay.classList.remove('hidden');
+
+    windowAlert.classList.remove('hidden');
+    windowAlert.textContent = '';
+    windowAlert.insertAdjacentHTML('afterbegin', markup);
+
+    setTimeout(function () {
+      overlay.classList.add('hidden');
+      windowAlert.classList.add('hidden');
+    }, MODAL_CLOSE_SEC * 500);
+
+    // document.querySelector('.alert-msg').textContent('message');
+    // document.querySelector
   }
 }

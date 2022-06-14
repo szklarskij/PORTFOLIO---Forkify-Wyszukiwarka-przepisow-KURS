@@ -44,7 +44,6 @@ class RecipeView extends View {
     });
   }
   _alertShoppingList() {
-    console.log('dupa');
     const icon = document.querySelector('.icon__cart');
     icon.classList.add('alert__shake');
     const alert = document.querySelector('.alert__shoppingList--update');

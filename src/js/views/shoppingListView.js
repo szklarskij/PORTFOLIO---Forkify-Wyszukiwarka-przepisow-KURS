@@ -1,10 +1,11 @@
 import View from './View.js';
 import icons from 'url:../../img/icons.svg';
+import previewShoppingView from './previewShoppingView.js';
 import ingredientsToBuyView from './ingredientsToBuyView.js';
 // import { of } from 'core-js/core/array';
 
 class ShoppingListView extends View {
-  _parentElement = document.querySelector('.shopping-list__list');
+  _parentElement = document.querySelector('.shopping-list__recipes');
   // _message = 'Recipe was successfully uploaded!';
 
   _window = document.querySelector('.shopping-list-window');
@@ -16,8 +17,9 @@ class ShoppingListView extends View {
 
   constructor() {
     const _element = '';
+    let _status;
     super();
-    this._addHandlerShowWindow();
+
     this._addHandlerHideWindow();
     this._addHandlerCopyList();
     // this._addHandlerClearList();
@@ -26,16 +28,36 @@ class ShoppingListView extends View {
   closeWindow() {
     this._overlay.classList.add('hidden');
     this._window.classList.add('hidden');
+    document.querySelector('.alert-window').classList.add('hidden');
   }
   openWindow() {
     this._overlay.classList.remove('hidden');
     this._window.classList.remove('hidden');
-    document.querySelectorAll('.error').forEach(el => el.remove());
-    // this._clearInputsAll();
+    // document.querySelectorAll('.error').forEach(el => el.remove());
   }
+  addHandlerShowList(handler) {
+    this._btnOpen.addEventListener(
+      'click',
+      function (e) {
+        console.log(this._status);
+        if (!this._status) {
+          console.log('pusto');
+          this.showAlert(
+            'Shopping list is empty! Add ingredients by clicking on shopping cart at certain recipe!'
+          );
+        } else {
+          this.openWindow();
+        }
+        handler();
+      }.bind(this)
+    );
+  }
+
   copyList() {
     let text = [];
-    this._parentElement
+
+    document
+      .querySelector('.shopping-list__list')
       .querySelectorAll('.shopping-list__list--el')
       .forEach((el, index) => {
         const textLine = `${index + 1}. ${el.textContent.slice(0, -4)}`;
@@ -45,13 +67,10 @@ class ShoppingListView extends View {
     text.forEach(text => {
       textToCopy = textToCopy + text + `\n`;
     });
+    textToCopy = `Shopping list:\n${textToCopy}`;
 
-    navigator.clipboard.writeText(`Shopping list:\n ${textToCopy}`);
+    navigator.clipboard.writeText(textToCopy.trim());
     alert('Shopping list copied to clipboard!');
-  }
-
-  _addHandlerShowWindow() {
-    this._btnOpen.addEventListener('click', this.openWindow.bind(this));
   }
 
   _addHandlerHideWindow() {
@@ -69,20 +88,10 @@ class ShoppingListView extends View {
 
   _generateMarkup() {
     if (this._data[0] !== 'noList') {
-      document.querySelector('.copy__btn').classList.remove('hiddenNoDisplay');
-      document.querySelector('.clear__btn').classList.remove('hiddenNoDisplay');
-      this._parentElement.style.height = '30rem';
-      document.querySelector('.shopping-list__heading').textContent =
-        'Shopping list';
       return this._data
-        .map(ings => ingredientsToBuyView.render(ings, false))
+        .map(recipes => previewShoppingView.render(recipes, false))
         .join('');
     } else {
-      document.querySelector('.shopping-list__heading').textContent =
-        'No shopping list yet!';
-      document.querySelector('.copy__btn').classList.add('hiddenNoDisplay');
-      document.querySelector('.clear__btn').classList.add('hiddenNoDisplay');
-      this._parentElement.style.height = '5rem';
       // btn.classList.add('.hiddenNoDisplay');
 
       return 'Add ingredients by clicking on shopping cart.';

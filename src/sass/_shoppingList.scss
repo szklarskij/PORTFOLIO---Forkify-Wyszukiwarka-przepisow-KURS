@@ -34,6 +34,8 @@
 }
 .shopping-list__container {
   display: grid;
+  // gap: 2rem;
+  column-gap: 2rem;
   grid-template-columns: 1fr 1fr;
 }
 .shopping-list__list {
@@ -50,4 +52,18 @@
   padding-top: 2rem;
   display: flex;
   justify-content: space-between;
+}
+
+.previewShopping__container {
+  display: grid;
+  grid-template-columns: 1fr 20fr;
+  align-items: center;
+}
+.preview__servingsBtns {
+  justify-self: center;
+}
+
+.shopping-list__recipes {
+  list-style: none;
+  overflow-y: auto;
 }

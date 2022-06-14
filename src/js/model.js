@@ -54,26 +54,40 @@ export const loadRecipe = async function (id) {
 };
 
 export const setShoppingList = function () {
-  let shoppingList = state.shoppingList;
+  let recipeList = state.shoppingList;
+  let shoppingList = [];
+  console.log(state.recipe);
 
-  state.recipe.ingredients.forEach(ing => {
-    const item = {
-      description: ing.description,
-      unit: ing.unit,
-      quantity: ing.quantity,
-    };
-    const el = shoppingList.find(
-      y => y.description === ing.description && y.unit === ing.unit
-    );
-    if (el) {
-      el.quantity += ing.quantity;
-    } else {
-      shoppingList.push(item);
-    }
-  });
-  state.shoppingList = shoppingList;
+  const addRecipe = recipeList.find(y => y.id === state.recipe.id);
+  if (!addRecipe) recipeList.push(state.recipe);
 
-  return state.shoppingList;
+  // console.log(shoppingList);
+  // return state.shoppingList;
+  recipeList.forEach(recipe =>
+    recipe.ingredients.forEach(ing => {
+      const item = {
+        description: ing.description,
+        unit: ing.unit,
+        quantity: ing.quantity,
+      };
+      const el = shoppingList.find(
+        y => y.description === ing.description && y.unit === ing.unit
+      );
+      if (el) {
+        el.quantity += ing.quantity;
+      } else {
+        shoppingList.push(item);
+      }
+    })
+  );
+
+  // console.log(shoppingList);
+  //
+
+  state.ingredientsToAdd = shoppingList;
+
+  state.shoppingList = recipeList;
+  // console.log(recipeList);
 };
 export const clearShoppingList = function () {
   state.shoppingList = [];
