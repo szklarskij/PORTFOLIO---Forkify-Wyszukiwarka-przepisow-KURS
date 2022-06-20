@@ -5,19 +5,12 @@ class ShoppingListIngView extends View {
   _parentElement = document.querySelector('.shopping-list__list');
 
   _generateMarkup() {
-    if (this._data[0] !== 'noList') {
+    if (this._status !== 0) {
       this._parentElement.style.height = '30rem';
       return this._data
         .map(recipes => ingredientsToBuyView.render(recipes, false))
         .join('');
     }
-    this._parentElement.style.height = '5rem';
-    return;
-    // this._element = this._data.forEach(el => {
-    // `<li class="shopping-list__list--el">${el.description}: ${el.quantity} ${el.unit}</li>`;
-    // console.log(this._element);
-    // });
-    // return this._element;
   }
 }
 

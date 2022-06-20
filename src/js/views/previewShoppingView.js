@@ -11,16 +11,16 @@ class PreviewShoppingView extends View {
         <li class="preview">
         <div class="previewShopping__container">
         <div class="preview__servingsBtns">
-        <button class="btn--tiny btn--update-servings" data-update-to="${
-          this._data.servings - 1
-        }">
+        <button class="btn--tiny btn--update-servings btn--minus" data-update-to="${
+          this._data.servingsShoppingList - 1
+        }" data-id="${this._data.id}">
           <svg>
             <use href="${icons}#icon-minus-circle"></use>
           </svg>
         </button>
-        <button class="btn--tiny btn--update-servings" data-update-to="${
-          this._data.servings + 1
-        }">
+        <button class="btn--tiny btn--update-servings btn--plus" data-update-to="${
+          this._data.servingsShoppingList + 1
+        }" data-id="${this._data.id}">
           <svg>
             <use href="${icons}#icon-plus-circle"></use>
           </svg>
@@ -37,7 +37,9 @@ class PreviewShoppingView extends View {
               </figure>
               <div class="preview__data">
               <h4 class="preview__title">${this._data.title}</h4>
-              <p class="preview__publisher">${this._data.servings} servings</p>
+              <p class="preview__publisher">${
+                this._data.servingsShoppingList
+              } servings</p>
               <div class="preview__user-generated ${
                 this._data.key ? '' : 'hidden'
               }">

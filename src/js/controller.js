@@ -154,9 +154,19 @@ const controlShoppingList = function () {
   shoppingListView.render(model.state.shoppingList);
   shoppingListIngView.render(model.state.ingredientsToAdd);
 };
-const controlShoppingListOpen = function () {
+
+const controlShoppingListServings = function (servings) {
+  // console.log(servings);
+
+  model.updateServingsShoppingList(servings);
+  // model.setShoppingList();
   shoppingListView._status = model.state.shoppingList.length;
-  console.log(shoppingListView._status);
+  shoppingListView.checkStatus();
+  shoppingListView.render(model.state.shoppingList);
+  shoppingListIngView.render(model.state.ingredientsToAdd);
+};
+
+const controlShoppingListOpen = function () {
   // model.setShoppingList();
   shoppingListView.render(model.state.shoppingList);
   shoppingListIngView.render(model.state.ingredientsToAdd);
@@ -164,7 +174,11 @@ const controlShoppingListOpen = function () {
 
 const controlClearShoppingList = function (clear) {
   model.clearShoppingList();
-  shoppingListView.render(['noList']);
+  shoppingListView._status = model.state.shoppingList.length;
+  shoppingListView.checkStatus();
+  shoppingListView.render(model.state.shoppingList);
+  shoppingListIngView.render(model.state.ingredientsToAdd);
+
   // console.log(removeIng);
 };
 
@@ -175,6 +189,7 @@ const init = function () {
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   recipeView.addHandlerAddShoppingList(controlShoppingList);
+  shoppingListView.addHandlerPlusServings(controlShoppingListServings);
   sortView.addHandlerClick(controlSort);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);

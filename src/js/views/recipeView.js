@@ -32,6 +32,7 @@ class RecipeView extends View {
         if (!btn) return;
         // console.log(this._data);
         this._alertShoppingList();
+        this.showAlert('Ingredients added to shopping list!');
         handler();
       }.bind(this)
     );
@@ -46,11 +47,8 @@ class RecipeView extends View {
   _alertShoppingList() {
     const icon = document.querySelector('.icon__cart');
     icon.classList.add('alert__shake');
-    const alert = document.querySelector('.alert__shoppingList--update');
-    alert.classList.remove('hidden');
+
     setTimeout(function () {
-      console.log('sec');
-      alert.classList.add('hidden');
       icon.classList.remove('alert__shake');
     }, 1000);
   }

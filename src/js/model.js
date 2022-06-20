@@ -53,18 +53,61 @@ export const loadRecipe = async function (id) {
   }
 };
 
-export const setShoppingList = function () {
+export const updateServingsShoppingList = function (newServings) {
+  const change = state.shoppingList.find(y => y.id === newServings.id);
+
+  change.ingredientsShoppingList.forEach(ing => {
+    ing.quantity =
+      (ing.quantity * newServings.updateTo) / change.servingsShoppingList;
+  });
+  // change.servings = +newServings.updateTo;
+  change.servingsShoppingList = +newServings.updateTo;
+  const list = state.shoppingList.filter(
+    recipe => recipe.servingsShoppingList > 0
+  );
+  state.shoppingList = list;
+  console.log(list);
   let recipeList = state.shoppingList;
   let shoppingList = [];
-  console.log(state.recipe);
+  list.forEach(recipe =>
+    recipe.ingredientsShoppingList.forEach(ing => {
+      const item = {
+        description: ing.description,
+        unit: ing.unit,
+        quantity: ing.quantity,
+      };
+      const el = shoppingList.find(
+        y => y.description === ing.description && y.unit === ing.unit
+      );
+      if (el) {
+        el.quantity += ing.quantity;
+      } else {
+        shoppingList.push(item);
+      }
+    })
+  );
+  state.ingredientsToAdd = shoppingList;
+  state.shoppingList = recipeList;
+  console.log(state.ingredientsToAdd);
+};
+export const setShoppingList = function () {
+  //remove 0 servings recipe
+  // const lista = state.shoppingList.filter(recipe => recipe.servings > 0);
+  state.recipe.servingsShoppingList = state.recipe.servings;
+  state.recipe.ingredientsShoppingList = JSON.parse(
+    JSON.stringify(state.recipe.ingredients)
+  );
+  let recipeList = state.shoppingList;
+  let shoppingList = [];
 
   const addRecipe = recipeList.find(y => y.id === state.recipe.id);
-  if (!addRecipe) recipeList.push(state.recipe);
+  // if (state.recipe === 0) console.log('zzzero');
+  if (!addRecipe) {
+    recipeList.push(state.recipe);
+  }
 
-  // console.log(shoppingList);
-  // return state.shoppingList;
   recipeList.forEach(recipe =>
-    recipe.ingredients.forEach(ing => {
+    recipe.ingredientsShoppingList.forEach(ing => {
       const item = {
         description: ing.description,
         unit: ing.unit,
@@ -81,9 +124,6 @@ export const setShoppingList = function () {
     })
   );
 
-  // console.log(shoppingList);
-  //
-
   state.ingredientsToAdd = shoppingList;
 
   state.shoppingList = recipeList;
@@ -91,8 +131,8 @@ export const setShoppingList = function () {
 };
 export const clearShoppingList = function () {
   state.shoppingList = [];
-  console.log(state.shoppingList);
-  return state.shoppingList;
+  // console.log(state.shoppingList);
+  // return state.shoppingList;
 };
 
 export const addIngredients = function (ing) {

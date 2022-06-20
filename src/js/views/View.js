@@ -1,5 +1,5 @@
 import icons from 'url:../../img/icons.svg';
-import { MODAL_CLOSE_SEC } from '../config.js';
+import { MODAL_CLOSE_SEC, COUNTER } from '../config.js';
 
 export default class View {
   _data;
@@ -117,13 +117,14 @@ export default class View {
     windowAlert.classList.remove('hidden');
     windowAlert.textContent = '';
     windowAlert.insertAdjacentHTML('afterbegin', markup);
-
     setTimeout(function () {
       overlay.classList.add('hidden');
       windowAlert.classList.add('hidden');
-    }, MODAL_CLOSE_SEC * 500);
+    }, MODAL_CLOSE_SEC * 750);
 
     // document.querySelector('.alert-msg').textContent('message');
     // document.querySelector
   }
 }
+
+//////////////////////////PRZENIESC COUNTER DO VIEW I TAM DZIALAC
