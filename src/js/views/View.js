@@ -3,6 +3,7 @@ import { MODAL_CLOSE_SEC, COUNTER } from '../config.js';
 
 export default class View {
   _data;
+  _timer;
 
   /**
    * Render the recived object to the DOM
@@ -101,6 +102,9 @@ export default class View {
     }
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
+  discardTimer() {
+    clearTimeout(this._timer);
+  }
   showAlert(message = this._message) {
     const windowAlert = document.querySelector('.alert-window');
     const overlay = document.querySelector('.overlay');
@@ -117,7 +121,7 @@ export default class View {
     windowAlert.classList.remove('hidden');
     windowAlert.textContent = '';
     windowAlert.insertAdjacentHTML('afterbegin', markup);
-    setTimeout(function () {
+    this._timer = setTimeout(function () {
       overlay.classList.add('hidden');
       windowAlert.classList.add('hidden');
     }, MODAL_CLOSE_SEC * 750);

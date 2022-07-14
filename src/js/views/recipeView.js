@@ -2,6 +2,7 @@ import View from './View.js';
 
 import icons from 'url:../../img/icons.svg';
 import cartIconWhite from 'url:../../img/icons/cartwhite.svg';
+import calendarIconWhite from 'url:../../img/icons/calendarWhite.svg';
 import { Fraction } from 'fractional';
 // import { set } from 'core-js/core/dict';
 
@@ -36,6 +37,16 @@ class RecipeView extends View {
         handler();
       }.bind(this)
     );
+  }
+  addHandlerAddDay(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.days__field');
+      if (!btn) return;
+      const date = btn.firstChild.textContent;
+      // document.querySelector('.days').style.visibility = 'hidden';
+      // document.querySelector('.days').style.opacity = '0';
+      handler(date);
+    });
   }
   addHandlerAddBookmark(handler) {
     this._parentElement.addEventListener('click', function (e) {
@@ -106,6 +117,69 @@ class RecipeView extends View {
     </svg>
   </div>
   <div class="recipe__btns">
+  <button class="btn--round btn--calendar">
+    <img
+
+    src=${calendarIconWhite}
+    alt="calendar"
+  />
+    </button>
+    <div class="days">
+    <span class="days__title">ASSIGN THIS RECIPE FOR NEXT 7 DAYS</span>
+    <ul class="days__list">
+    <li class="days__field days__day--1"><span class="days_field--data">${
+      this._data.days[0].dayId
+    }</span>
+Today${
+      this._data.days[0].recipe.length === 0
+        ? ''
+        : `: <span class="days_field--recipe">${this._data.days[0].recipe[0].title}</span>`
+    }</li>
+    <li class="days__field days__day--2"><span class="days_field--data">${
+      this._data.days[1].dayId
+    }</span>Tomorrow${
+      this._data.days[1].recipe.length === 0
+        ? ''
+        : `: <span class="days_field--recipe">${this._data.days[1].recipe[0].title}</span>`
+    }</li>
+    <li class="days__field days__day--3"><span class="days_field--data">${
+      this._data.days[2].dayId
+    }</span>${this._data.days[2].day}${
+      this._data.days[2].recipe.length === 0
+        ? ''
+        : `: <span class="days_field--recipe">${this._data.days[2].recipe[0].title}</span>`
+    }</li>
+    <li class="days__field days__day--4"><span class="days_field--data">${
+      this._data.days[3].dayId
+    }</span>${this._data.days[3].day}${
+      this._data.days[3].recipe.length === 0
+        ? ''
+        : `: <span class="days_field--recipe">${this._data.days[3].recipe[0].title}</span>`
+    }</li>
+    <li class="days__field days__day--5"><span class="days_field--data">${
+      this._data.days[4].dayId
+    }</span>${this._data.days[4].day}${
+      this._data.days[4].recipe.length === 0
+        ? ''
+        : `: <span class="days_field--recipe">${this._data.days[4].recipe[0].title}</span>`
+    }</li>
+    <li class="days__field days__day--6"><span class="days_field--data">${
+      this._data.days[5].dayId
+    }</span>${this._data.days[5].day}${
+      this._data.days[5].recipe.length === 0
+        ? ''
+        : `: <span class="days_field--recipe">${this._data.days[5].recipe[0].title}</span>`
+    }</li>
+    <li class="days__field days__day--7"><span class="days_field--data">${
+      this._data.days[6].dayId
+    }</span>${this._data.days[6].day}${
+      this._data.days[6].recipe.length === 0
+        ? ''
+        : `: <span class="days_field--recipe">${this._data.days[6].recipe[0].title}</span>`
+    }</li>
+    
+    </ul>
+    </div>
     <button class="btn--round btn--shoppin-list">
     <img
 

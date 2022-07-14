@@ -2,6 +2,8 @@ import * as model from './model.js';
 import { MODAL_CLOSE_SEC } from './config.js';
 import recipeView from './views/recipeView.js';
 // import View from './views/view.js';
+
+import planView from './views/planView.js';
 import sortView from './views/sortView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
@@ -182,13 +184,41 @@ const controlClearShoppingList = function (clear) {
   // console.log(removeIng);
 };
 
+const controlDays = function (date) {
+  model.addRecipeToDate(date);
+  recipeView.render(model.state.recipe);
+};
+
+const controlDeleteRecipeFromPlan = function (date) {
+  model.deleteRecipeFromPlan(date);
+  planView.render(model.state.recipe);
+  recipeView.render(model.state.recipe);
+};
+
+const controlPlan = function () {
+  planView.render(model.state.recipe);
+  // model.addRecipeToDate(date);
+  // recipeView.render(model.state.recipe);
+};
+
+const controlPlanAddRecipesToShoppingList = function (recipes) {
+  // console.log(model.state.days);
+  model.getRecipesFromPlanToShoppingList(recipes);
+  shoppingListView._status = model.state.shoppingList.length;
+};
+
 const init = function () {
   // shoppingListView.addHandlerRender(controlShoppingList);
+  planView.addHandlerShowPlan(controlPlan);
+  planView.addHandlerDeleteRecipe(controlDeleteRecipeFromPlan);
+  planView.addHandlerAddToShoppingList(controlPlanAddRecipesToShoppingList);
+
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   recipeView.addHandlerAddShoppingList(controlShoppingList);
+  recipeView.addHandlerAddDay(controlDays);
   shoppingListView.addHandlerPlusServings(controlShoppingListServings);
   sortView.addHandlerClick(controlSort);
   searchView.addHandlerSearch(controlSearchResults);

@@ -180,3 +180,75 @@
     font-weight: 700;
   }
 }
+
+////days
+///
+
+.recipe__btns {
+  position: relative;
+}
+
+.days {
+  font-size: 1.65rem;
+  position: absolute;
+  // right: 0;
+  // right: 4rem;
+  left: -210%;
+  z-index: 10;
+  width: 40rem;
+  background-color: #fff;
+  box-shadow: 0 0.8rem 5rem 2rem rgba($color-grey-dark-1, 0.1);
+
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s 0.1s;
+  &__title {
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background-image: linear-gradient(
+      to right bottom,
+      $color-grad-1,
+      $color-grad-2
+    );
+    padding: 1.5rem 1rem;
+    font-size: inherit;
+    font-weight: 600;
+    background-color: red;
+    display: flex;
+    height: 100%;
+  }
+  &__list {
+    list-style: none;
+    // text-transform: uppercase;
+  }
+
+  &__field {
+    cursor: pointer;
+    padding: 0.2rem 1rem;
+
+    display: grid;
+    grid-template-columns: 3.5rem 8rem 1fr;
+    align-items: center;
+    height: 100%;
+    transition: all 0.3s;
+    span {
+      color: $color-primary;
+      font-size: 1.2rem;
+      // padding-right: 1rem;
+      // background-color: red;
+    }
+    &:hover {
+      background-color: $color-grey-light-2;
+    }
+  }
+  .days_field--recipe {
+    padding-left: 1rem;
+    // color: red;
+  }
+  &:hover,
+  .btn--calendar:hover + & {
+    visibility: visible;
+    opacity: 1;
+  }
+}

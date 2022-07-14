@@ -27,18 +27,17 @@ class ShoppingListView extends View {
     // this._addHandlerAddIng();
   }
   closeWindow() {
+    this.discardTimer();
     this._overlay.classList.add('hidden');
     this._window.classList.add('hidden');
     document.querySelector('.alert-window').classList.add('hidden');
-    clearTimeout(COUNTER);
-    console.log('close timer');
   }
   openWindow() {
     this._overlay.classList.remove('hidden');
     this._window.classList.remove('hidden');
     this._parentElement.classList.remove('hiddenNoDisplay');
     document.querySelector('.shopping-list__list').classList.remove('hidden');
-    clearTimeout(COUNTER);
+    this.discardTimer();
     // document.querySelectorAll('.error').forEach(el => el.remove());
   }
 
@@ -56,7 +55,6 @@ class ShoppingListView extends View {
       'click',
       function () {
         if (!this._status) {
-          console.log('pusto');
           this.showAlert(
             'Shopping list is empty! Add ingredients by clicking on shopping cart at certain recipe!'
           );

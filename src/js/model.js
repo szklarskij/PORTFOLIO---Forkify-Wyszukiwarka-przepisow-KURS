@@ -1,4 +1,4 @@
-import { API_URL, RES_PER_PAGE, KEY } from './config.js';
+import { API_URL, RES_PER_PAGE, KEY, WEEKDAY } from './config.js';
 import { async } from 'regenerator-runtime';
 import { AJAX } from './helpers.js';
 
@@ -16,6 +16,7 @@ export const state = {
   bookmarks: [],
   ingredientsToAdd: [],
   shoppingList: [],
+  days: [],
 };
 
 const persistBookmarks = function () {
@@ -34,6 +35,7 @@ const createRecipeObject = function (data) {
     servings: recipe.servings,
     cookingTime: recipe.cooking_time,
     ingredients: recipe.ingredients,
+    days: state.days,
     ...(recipe.key && { key: recipe.key }), //jezeli key nie ma to short circuting i nie bedzie nic
   };
 };
@@ -66,7 +68,7 @@ export const updateServingsShoppingList = function (newServings) {
     recipe => recipe.servingsShoppingList > 0
   );
   state.shoppingList = list;
-  console.log(list);
+
   let recipeList = state.shoppingList;
   let shoppingList = [];
   list.forEach(recipe =>
@@ -105,7 +107,7 @@ export const setShoppingList = function () {
   if (!addRecipe) {
     recipeList.push(state.recipe);
   }
-
+  console.log(recipeList);
   recipeList.forEach(recipe =>
     recipe.ingredientsShoppingList.forEach(ing => {
       const item = {
@@ -237,9 +239,116 @@ export const deleteBookmark = function (id) {
   persistBookmarks();
 };
 
+export const addRecipeToDate = function (date) {
+  //delete bookmark
+  const assign = state.days.find(y => y.dayId === date);
+  assign.recipe = [];
+  assign.recipe.push(state.recipe);
+  // console.log(assign);
+  assign.servings = state.recipe.servings;
+  // console.log(state.days);
+};
+export const deleteRecipeFromPlan = function (date) {
+  //delete bookmark
+  const assign = state.days.find(y => y.dayId === date);
+  assign.recipe = [];
+};
+
+export const getRecipesFromPlanToShoppingList = function (dates) {
+  // console.log(state.days);
+  const dateArr = dates;
+  state.shoppingList = [];
+  let recipeList = [];
+  let recipeListArr = [];
+  let shoppingList = [];
+
+  // state.days.forEach(day => {
+  //   dateArr.push(day.recipe[0]);
+  // });
+  // console.log(dateArr);
+
+  // let dateArr = [];
+  dateArr.forEach(date => {
+    const dayMatch = state.days.find(y => y.dayId === date);
+    if (!dayMatch) return;
+    const recipeFromDay = [dayMatch.recipe[0], dayMatch.servings];
+
+    if (recipeListArr.length === 0) {
+      recipeListArr.push(recipeFromDay);
+    } else {
+      ////jezeli nie ma takiego to dodaj
+      if (!recipeListArr.some(d => d[0].id === recipeFromDay[0].id)) {
+        recipeListArr.push(recipeFromDay);
+      } else {
+        ///jezeli jest taki to zsumuj
+
+        recipeListArr.forEach(r => {
+          if (r[0].id === recipeFromDay[0].id) {
+            r[1] += recipeFromDay[1];
+          }
+        });
+      }
+    }
+  });
+  //aodaj do shoppingList
+  recipeListArr.forEach(r => {
+    r[0].servings = r[1];
+    recipeList.push(r[0]);
+  });
+  console.log(recipeList);
+  recipeList.forEach(recipe => {
+    recipe.servingsShoppingList = recipe.servings;
+    recipe.ingredientsShoppingList = JSON.parse(
+      JSON.stringify(recipe.ingredients)
+    );
+
+    recipe.ingredientsShoppingList.forEach(ing => {
+      const item = {
+        description: ing.description,
+        unit: ing.unit,
+        quantity: ing.quantity,
+      };
+      const el = shoppingList.find(
+        y => y.description === ing.description && y.unit === ing.unit
+      );
+      if (el) {
+        el.quantity += ing.quantity;
+      } else {
+        shoppingList.push(item);
+      }
+    });
+  });
+
+  state.ingredientsToAdd = shoppingList;
+
+  state.shoppingList = recipeList;
+
+  console.log(state.ingredientsToAdd);
+};
+
 const init = function () {
   const storage = localStorage.getItem('bookmarks');
   if (storage) state.bookmarks = JSON.parse(storage);
+
+  //days
+
+  const today = new Date();
+  // let day;
+  let timestamp = today.setDate(today.getDate());
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(timestamp);
+    timestamp = today.setDate(today.getDate() + 1);
+    const dayString = `${date.getDate()}/${date.getMonth() + 1}`;
+
+    let day = WEEKDAY[date.getDay()];
+
+    const dataObject = {
+      dayId: dayString,
+      day: day,
+      recipe: [],
+    };
+    state.days.push(dataObject);
+  }
 };
 init();
 
@@ -250,21 +359,6 @@ const clearBookmarks = function () {
 
 export const uploadRecipe = async function (newRecipe) {
   try {
-    // const ingredients = Object.entries(newRecipe)
-    //   .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
-    //   .map(ing => {
-    //     const ingArr = ing[1].split(',').map(el => el.trim());
-    //     // const ingArr = ing[1].replaceAll(' ', '').split(',');
-
-    //     if (ingArr.length !== 3)
-    //       throw new Error(
-    //         'Wrong ingredients format! Please use the correct format'
-    //       );
-
-    //     const [quantity, unit, description] = ingArr;
-    //     return { quantity, unit, description };
-    //   });
-    console.log(newRecipe);
     const recipe = {
       title: newRecipe.title,
       source_url: newRecipe.sourceUrl,
