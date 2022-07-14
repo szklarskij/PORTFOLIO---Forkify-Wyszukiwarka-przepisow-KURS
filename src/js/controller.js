@@ -67,7 +67,6 @@ const controlSearchResults = async function () {
     console.log(err);
   }
 };
-
 const controlSort = function (sortType) {
   // sortView.render(model.state.search.sortby);
   // console.log('llll');
