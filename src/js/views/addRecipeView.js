@@ -6,7 +6,6 @@ import icons from 'url:../../img/icons.svg';
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.add-recipe-window');
   _message = 'Recipe was successfully uploaded!';
-  _btnClose = document.querySelectorAll('.btn--close-modal');
 
   _btnAddIng = document.querySelector('.plus__btn');
   _uploadForm = document.querySelector('.upload__form');
@@ -14,7 +13,7 @@ class AddRecipeView extends View {
   _btnRemoveIng = document.querySelector('.upload__list');
   _ingList = document.querySelector('.upload__list');
   _window = document.querySelector('.add-recipe-window');
-  _overlay = document.querySelector('.overlay');
+
   _btnOpen = document.querySelector('.nav__btn--add-recipe');
 
   _formIngTitle = document.querySelector('.form__ing--title');
@@ -28,11 +27,7 @@ class AddRecipeView extends View {
     this._addHandlerHideWindow();
     // this._addHandlerAddIng();
   }
-  closeWindow() {
-    this.discardTimer();
-    this._overlay.classList.add('hidden');
-    this._window.classList.add('hidden');
-  }
+
   openWindow() {
     this._overlay.classList.remove('hidden');
     this._window.classList.remove('hidden');

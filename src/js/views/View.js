@@ -2,6 +2,8 @@ import icons from 'url:../../img/icons.svg';
 import { MODAL_CLOSE_SEC, COUNTER } from '../config.js';
 
 export default class View {
+  _btnClose = document.querySelectorAll('.btn--close-modal');
+  _overlay = document.querySelector('.overlay');
   _data;
   _timer;
 
@@ -14,6 +16,13 @@ export default class View {
    * @author Jakub Szklarski
    * @todo Finish implementation
    */
+
+  closeWindow() {
+    this.discardTimer();
+    this._overlay.classList.add('hidden');
+    this._window.classList.add('hidden');
+  }
+
   render(data, render = true) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
