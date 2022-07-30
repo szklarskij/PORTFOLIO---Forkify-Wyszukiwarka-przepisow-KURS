@@ -15,7 +15,7 @@ class AddRecipeView extends View {
   _window = document.querySelector('.add-recipe-window');
 
   _btnOpen = document.querySelector('.nav__btn--add-recipe');
-
+  _btnClose = document.getElementById('btn--close-add-recipe');
   _formIngTitle = document.querySelector('.form__ing--title');
   _formIngQuantity = document.querySelector('.form__ing--quantity');
   _formIngUnit = document.querySelector('.form__ing--unit');
@@ -36,14 +36,19 @@ class AddRecipeView extends View {
     this._uploadForm2.classList.remove('hiddenNoDisplay');
     // this._clearInputsAll();
   }
+
+  closeWindow() {
+    this.discardTimer();
+    this._overlay.classList.add('hidden');
+    this._window.classList.add('hidden');
+  }
+
   _addHandlerShowWindow() {
     this._btnOpen.addEventListener('click', this.openWindow.bind(this));
   }
 
   _addHandlerHideWindow() {
-    this._btnClose.forEach(item =>
-      item.addEventListener('click', this.closeWindow.bind(this))
-    );
+    this._btnClose.addEventListener('click', this.closeWindow.bind(this));
     this._overlay.addEventListener('click', this.closeWindow.bind(this));
   }
 

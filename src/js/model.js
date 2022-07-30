@@ -107,7 +107,6 @@ export const setShoppingList = function () {
   if (!addRecipe) {
     recipeList.push(state.recipe);
   }
-  console.log(recipeList);
   recipeList.forEach(recipe =>
     recipe.ingredientsShoppingList.forEach(ing => {
       const item = {
@@ -223,7 +222,7 @@ export const addBookmark = function (recipe) {
   //add bookmark
   state.bookmarks.push(recipe);
   //mark curr recip as bookmark
-
+  console.log(recipe);
   if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
 
   persistBookmarks();

@@ -12,9 +12,10 @@ class ShoppingListView extends View {
   _window = document.querySelector('.shopping-list-window');
   _overlay = document.querySelector('.overlay');
   _btnOpen = document.querySelector('.nav__btn--shopping-list');
-  _btnClose = document.querySelector('.btn--close-modal');
+  _btnClose = document.getElementById('btn--close-shopping-list');
   _btnClear = document.querySelector('.clear__btn');
   _btnCopy = document.querySelector('.copy__btn');
+  _alertWindow = document.querySelector('.alert-window');
 
   constructor() {
     const _element = '';
@@ -30,9 +31,10 @@ class ShoppingListView extends View {
     this.discardTimer();
     this._overlay.classList.add('hidden');
     this._window.classList.add('hidden');
-    document.querySelector('.alert-window').classList.add('hidden');
+    this._alertWindow.classList.add('hidden');
   }
   openWindow() {
+    console.log(this._timer);
     this._overlay.classList.remove('hidden');
     this._window.classList.remove('hidden');
     this._parentElement.classList.remove('hiddenNoDisplay');

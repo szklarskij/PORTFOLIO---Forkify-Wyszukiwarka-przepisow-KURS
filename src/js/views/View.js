@@ -1,11 +1,11 @@
 import icons from 'url:../../img/icons.svg';
-import { MODAL_CLOSE_SEC, COUNTER } from '../config.js';
+import { MODAL_CLOSE_SEC, TIMER } from '../config.js';
 
 export default class View {
-  _btnClose = document.querySelectorAll('.btn--close-modal');
   _overlay = document.querySelector('.overlay');
   _data;
   _timer;
+  test = 777;
 
   /**
    * Render the recived object to the DOM
@@ -16,12 +16,6 @@ export default class View {
    * @author Jakub Szklarski
    * @todo Finish implementation
    */
-
-  closeWindow() {
-    this.discardTimer();
-    this._overlay.classList.add('hidden');
-    this._window.classList.add('hidden');
-  }
 
   render(data, render = true) {
     if (!data || (Array.isArray(data) && data.length === 0))
@@ -112,6 +106,7 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
   discardTimer() {
+    console.log(this._timer);
     clearTimeout(this._timer);
   }
   showAlert(message = this._message) {
@@ -130,11 +125,14 @@ export default class View {
     windowAlert.classList.remove('hidden');
     windowAlert.textContent = '';
     windowAlert.insertAdjacentHTML('afterbegin', markup);
+    // console.log(this._timer);
     this._timer = setTimeout(function () {
       overlay.classList.add('hidden');
       windowAlert.classList.add('hidden');
     }, MODAL_CLOSE_SEC * 750);
 
+    // clearTimeout(this._timer);
+    console.log(this._timer);
     // document.querySelector('.alert-msg').textContent('message');
     // document.querySelector
   }

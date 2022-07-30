@@ -8,10 +8,9 @@ class PlanView extends View {
   _overlay = document.querySelector('.overlay');
   _windowPlan = document.querySelector('.plan-window');
   _btnOpen = document.querySelector('.nav__btn--plan');
-  _btnClose = document.querySelector('.btn--close-modal');
-
-  // _btnClear = document.querySelector('.clear__btn');
-  // _btnCopy = document.querySelector('.copy__btn');
+  _btnClose = document.getElementById('btn--close-plan');
+  _btnClear = document.querySelector('.clear__btn');
+  _btnCopy = document.querySelector('.copy__btn');
 
   constructor() {
     super();
