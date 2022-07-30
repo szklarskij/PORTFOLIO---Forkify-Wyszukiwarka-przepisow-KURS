@@ -106,7 +106,6 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
   discardTimer() {
-    console.log(this._timer);
     clearTimeout(this._timer);
   }
   showAlert(message = this._message) {
@@ -132,7 +131,7 @@ export default class View {
     }, MODAL_CLOSE_SEC * 750);
 
     // clearTimeout(this._timer);
-    console.log(this._timer);
+
     // document.querySelector('.alert-msg').textContent('message');
     // document.querySelector
   }

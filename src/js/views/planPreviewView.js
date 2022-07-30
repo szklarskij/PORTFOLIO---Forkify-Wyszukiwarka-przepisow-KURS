@@ -13,7 +13,10 @@ class PreviewView extends View {
     const tomorrow = new Date(timestamp);
     const tomorrowString = `${tomorrow.getDate()}/${tomorrow.getMonth() + 1}`;
 
+    // console.log(this._data);
     if (this._data.recipe.length !== 0) {
+      const recipeParse = JSON.parse(this._data.recipe[0]);
+
       return `
     <li class="plan__recipes">
 <div class="plan__date--container"><span class="plan__date--day">${
@@ -23,20 +26,18 @@ class PreviewView extends View {
           ? 'Tomorrow'
           : this._data.day
       }</span><span class="plan__date--date">${this._data.dayId}</span></div>
-        <div class="preview plan__empty" data-id="${this._data.recipe[0].id}">
-            <a class="preview__link" href="#${this._data.recipe[0].id}">
+        <div class="preview plan__empty" data-id="${recipeParse.id}">
+            <a class="preview__link" href="#${recipeParse.id}">
               <figure class="preview__fig">
-                <img src="${this._data.recipe[0].image}" alt="${
-        this._data.recipe[0].title
-      }" />
+                <img src="${recipeParse.image}" alt="${recipeParse.title}" />
               </figure>
               <div class="preview__data">
-                <h4 class="preview__title">${this._data.recipe[0].title}</h4>
+                <h4 class="preview__title">${recipeParse.title}</h4>
                 <p class="preview__publisher">${
                   this._data.servings
                 } servings</p>
                 <div class="preview__user-generated ${
-                  this._data.recipe[0].key ? '' : 'hidden'
+                  recipeParse.key ? '' : 'hidden'
                 }">
                 <svg>
                 <use href="${icons}#icon-user"></use>

@@ -222,7 +222,7 @@ export const addBookmark = function (recipe) {
   //add bookmark
   state.bookmarks.push(recipe);
   //mark curr recip as bookmark
-  console.log(recipe);
+
   if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
 
   persistBookmarks();
@@ -242,7 +242,7 @@ export const addRecipeToDate = function (date) {
   //delete bookmark
   const assign = state.days.find(y => y.dayId === date);
   assign.recipe = [];
-  assign.recipe.push(state.recipe);
+  assign.recipe.push(JSON.stringify(state.recipe));
   // console.log(assign);
   assign.servings = state.recipe.servings;
   // console.log(state.days);

@@ -64,6 +64,9 @@ class RecipeView extends View {
     }, 1000);
   }
   _generateMarkup() {
+    // console.log('lol');
+    // const recipeParse = JSON.parse(this._data.days[0].recipe[0]);
+    // console.log(recipe);
     return `
     <figure class="recipe__fig">
     <img src="${this._data.image}" alt="${
@@ -133,49 +136,63 @@ class RecipeView extends View {
 Today${
       this._data.days[0].recipe.length === 0
         ? ''
-        : `: <span class="days_field--recipe">${this._data.days[0].recipe[0].title}</span>`
+        : `: <span class="days_field--recipe">${
+            JSON.parse(this._data.days[0].recipe[0]).title
+          }</span>`
     }</li>
     <li class="days__field days__day--2"><span class="days_field--data">${
       this._data.days[1].dayId
     }</span>Tomorrow${
       this._data.days[1].recipe.length === 0
         ? ''
-        : `: <span class="days_field--recipe">${this._data.days[1].recipe[0].title}</span>`
+        : `: <span class="days_field--recipe">${
+            JSON.parse(this._data.days[1].recipe[0]).title
+          }</span>`
     }</li>
     <li class="days__field days__day--3"><span class="days_field--data">${
       this._data.days[2].dayId
     }</span>${this._data.days[2].day}${
       this._data.days[2].recipe.length === 0
         ? ''
-        : `: <span class="days_field--recipe">${this._data.days[2].recipe[0].title}</span>`
+        : `: <span class="days_field--recipe">${
+            JSON.parse(this._data.days[2].recipe[0]).title
+          }</span>`
     }</li>
     <li class="days__field days__day--4"><span class="days_field--data">${
       this._data.days[3].dayId
     }</span>${this._data.days[3].day}${
       this._data.days[3].recipe.length === 0
         ? ''
-        : `: <span class="days_field--recipe">${this._data.days[3].recipe[0].title}</span>`
+        : `: <span class="days_field--recipe">${
+            JSON.parse(this._data.days[3].recipe[0]).title
+          }</span>`
     }</li>
     <li class="days__field days__day--5"><span class="days_field--data">${
       this._data.days[4].dayId
     }</span>${this._data.days[4].day}${
       this._data.days[4].recipe.length === 0
         ? ''
-        : `: <span class="days_field--recipe">${this._data.days[4].recipe[0].title}</span>`
+        : `: <span class="days_field--recipe">${
+            JSON.parse(this._data.days[4].recipe[0]).title
+          }</span>`
     }</li>
     <li class="days__field days__day--6"><span class="days_field--data">${
       this._data.days[5].dayId
     }</span>${this._data.days[5].day}${
       this._data.days[5].recipe.length === 0
         ? ''
-        : `: <span class="days_field--recipe">${this._data.days[5].recipe[0].title}</span>`
+        : `: <span class="days_field--recipe">${
+            JSON.parse(this._data.days[5].recipe[0]).title
+          }</span>`
     }</li>
     <li class="days__field days__day--7"><span class="days_field--data">${
       this._data.days[6].dayId
     }</span>${this._data.days[6].day}${
       this._data.days[6].recipe.length === 0
         ? ''
-        : `: <span class="days_field--recipe">${this._data.days[6].recipe[0].title}</span>`
+        : `: <span class="days_field--recipe">${
+            JSON.parse(this._data.days[6].recipe[0]).title
+          }</span>`
     }</li>
     
     </ul>
