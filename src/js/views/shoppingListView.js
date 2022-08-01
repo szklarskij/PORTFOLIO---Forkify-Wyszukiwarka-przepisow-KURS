@@ -34,7 +34,6 @@ class ShoppingListView extends View {
     this._alertWindow.classList.add('hidden');
   }
   openWindow() {
-    console.log(this._timer);
     this._overlay.classList.remove('hidden');
     this._window.classList.remove('hidden');
     this._parentElement.classList.remove('hiddenNoDisplay');
@@ -56,7 +55,8 @@ class ShoppingListView extends View {
     this._btnOpen.addEventListener(
       'click',
       function () {
-        if (!this._status) {
+        // console.log(this._status);
+        if (this._status === 0 || !this._status) {
           this.showAlert(
             'Shopping list is empty! Add ingredients by clicking on shopping cart at certain recipe!'
           );
@@ -119,7 +119,6 @@ class ShoppingListView extends View {
         .join('');
     } else {
       // btn.classList.add('.hiddenNoDisplay');
-      console.log('serko');
       return 'Add ingredients by clicking on shopping cart.';
     }
 

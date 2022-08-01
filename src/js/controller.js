@@ -137,7 +137,8 @@ const controlAddRecipe = async function (newRecipe) {
 const controlAddIng = function (newIng) {
   model.addIngredients(newIng);
   // addRecipeView.generateNewIng(model.state.ingredientsToAdd);
-  addRecipeView.renderIng(model.state.ingredientsToAdd);
+
+  addRecipeView.renderIng(model.state.newIngredients);
   // console.log(newIng);
   // console.log('lalala');
 
@@ -145,7 +146,7 @@ const controlAddIng = function (newIng) {
 };
 const controlRemoveIng = function (removeIng) {
   model.removeIngredients(removeIng);
-  addRecipeView.renderIng(model.state.ingredientsToAdd);
+  addRecipeView.renderIng(model.state.newIngredients);
   // console.log(removeIng);
 };
 
@@ -169,6 +170,7 @@ const controlShoppingListServings = function (servings) {
 
 const controlShoppingListOpen = function () {
   // model.setShoppingList();
+  shoppingListView._status = model.state.shoppingList.length;
   shoppingListView.render(model.state.shoppingList);
   shoppingListIngView.render(model.state.ingredientsToAdd);
 };
@@ -195,6 +197,7 @@ const controlDeleteRecipeFromPlan = function (date) {
 };
 
 const controlPlan = function () {
+  model.state.days.splice(7); //bugfix
   planView.render(model.state.recipe);
   // model.addRecipeToDate(date);
   // recipeView.render(model.state.recipe);
@@ -208,6 +211,7 @@ const controlPlanAddRecipesToShoppingList = function (recipes) {
 
 const init = function () {
   // shoppingListView.addHandlerRender(controlShoppingList);
+  shoppingListView._status = model.state.shoppingList.length;
   planView.addHandlerShowPlan(controlPlan);
   planView.addHandlerDeleteRecipe(controlDeleteRecipeFromPlan);
   planView.addHandlerAddToShoppingList(controlPlanAddRecipesToShoppingList);

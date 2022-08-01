@@ -60,8 +60,7 @@ class AddRecipeView extends View {
         const dataArr = [...new FormData(this._uploadForm)];
         const data = Object.fromEntries(dataArr);
         data.ingredients = this._ingredients;
-        console.log(this._ingredients);
-        console.log(this._uploadForm);
+
         this._uploadForm.classList.add('hiddenNoDisplay');
         this._uploadForm2.classList.add('hiddenNoDisplay');
         handler(data);
@@ -74,7 +73,6 @@ class AddRecipeView extends View {
     this._formIngUnit.value = '';
   }
   _clearInputsAll() {
-    console.log(this._parentElement);
     this._parentElement
       .querySelectorAll('input')
       .forEach(el => (el.value = ''));
@@ -89,8 +87,6 @@ class AddRecipeView extends View {
         if (document.querySelector('.form__ing--title').value === '') {
           this.renderIngError('Ingredient title required!');
           setTimeout(function () {
-            // console.log(this._data);
-            // this.renderIng();
             handler('refresh');
           }, 2000);
           return;
@@ -137,7 +133,7 @@ class AddRecipeView extends View {
       const btn = e.target.closest('.upload__list--item');
       if (!btn) return;
       const ingRemove = [JSON.parse(btn.dataset.ing)];
-      // console.log(ingRemove);
+
       handler(ingRemove);
     });
   }
@@ -150,7 +146,6 @@ class AddRecipeView extends View {
 
     // if (!render) return markup;
 
-    // console.log(`render' ${data}`);
     this._ingList.insertAdjacentHTML('afterbegin', markup);
   }
   renderIngError(message) {

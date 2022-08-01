@@ -15,6 +15,7 @@ export const state = {
   },
   bookmarks: [],
   ingredientsToAdd: [],
+  newIngredients: [],
   shoppingList: [],
   days: [],
 };
@@ -22,6 +23,17 @@ export const state = {
 const persistBookmarks = function () {
   //add bookmark
   localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+};
+
+const persistPlan = function () {
+  //add plan
+
+  localStorage.setItem('plan', JSON.stringify(state.days));
+};
+const persistShoppingList = function () {
+  //add sl
+  localStorage.setItem('shoppingList', JSON.stringify(state.shoppingList));
+  localStorage.setItem('ingredients', JSON.stringify(state.ingredientsToAdd));
 };
 
 const createRecipeObject = function (data) {
@@ -90,7 +102,8 @@ export const updateServingsShoppingList = function (newServings) {
   );
   state.ingredientsToAdd = shoppingList;
   state.shoppingList = recipeList;
-  console.log(state.ingredientsToAdd);
+
+  persistShoppingList();
 };
 export const setShoppingList = function () {
   //remove 0 servings recipe
@@ -128,27 +141,31 @@ export const setShoppingList = function () {
   state.ingredientsToAdd = shoppingList;
 
   state.shoppingList = recipeList;
+
+  persistShoppingList();
   // console.log(recipeList);
 };
 export const clearShoppingList = function () {
   state.shoppingList = [];
+  persistShoppingList();
   // console.log(state.shoppingList);
   // return state.shoppingList;
 };
 
 export const addIngredients = function (ing) {
-  if (ing !== 'refresh') state.ingredientsToAdd.push(ing);
-  return state.ingredientsToAdd;
+  if (ing !== 'refresh') state.newIngredients.push(ing);
+
+  return state.newIngredients;
 };
 export const removeIngredients = function (ing) {
-  const ingArr = state.ingredientsToAdd.filter(
+  const ingArr = state.newIngredients.filter(
     el => el.ingId !== ing[0].ingId
     // el == ing[0]
   );
 
-  state.ingredientsToAdd = ingArr;
+  state.newIngredients = ingArr;
 
-  return state.ingredientsToAdd;
+  return state.newIngredients;
 };
 
 export const loadSearchResults = async function (query) {
@@ -246,11 +263,15 @@ export const addRecipeToDate = function (date) {
   // console.log(assign);
   assign.servings = state.recipe.servings;
   // console.log(state.days);
+
+  persistPlan();
 };
 export const deleteRecipeFromPlan = function (date) {
   //delete bookmark
   const assign = state.days.find(y => y.dayId === date);
   assign.recipe = [];
+
+  persistPlan();
 };
 
 export const getRecipesFromPlanToShoppingList = function (dates) {
@@ -294,9 +315,15 @@ export const getRecipesFromPlanToShoppingList = function (dates) {
     r[0].servings = r[1];
     recipeList.push(r[0]);
   });
-  console.log(recipeList);
+  const recipeListFix = [];
   recipeList.forEach(recipe => {
+    const recipeFix = JSON.parse(recipe);
+    recipeListFix.push(recipeFix);
+  });
+
+  recipeListFix.forEach(recipe => {
     recipe.servingsShoppingList = recipe.servings;
+
     recipe.ingredientsShoppingList = JSON.parse(
       JSON.stringify(recipe.ingredients)
     );
@@ -320,14 +347,24 @@ export const getRecipesFromPlanToShoppingList = function (dates) {
 
   state.ingredientsToAdd = shoppingList;
 
-  state.shoppingList = recipeList;
+  state.shoppingList = recipeListFix;
 
-  console.log(state.ingredientsToAdd);
+  persistShoppingList();
 };
 
 const init = function () {
-  const storage = localStorage.getItem('bookmarks');
-  if (storage) state.bookmarks = JSON.parse(storage);
+  const storageBookmarks = localStorage.getItem('bookmarks');
+  if (storageBookmarks) state.bookmarks = JSON.parse(storageBookmarks);
+
+  const storagePlan = localStorage.getItem('plan');
+  if (storagePlan) state.days = JSON.parse(storagePlan);
+
+  const storageShoppingList = localStorage.getItem('shoppingList');
+  if (storageShoppingList) state.shoppingList = JSON.parse(storageShoppingList);
+
+  const storageIngredients = localStorage.getItem('ingredients');
+  if (storageIngredients)
+    state.ingredientsToAdd = JSON.parse(storageIngredients);
 
   //days
 

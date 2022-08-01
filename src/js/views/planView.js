@@ -46,7 +46,6 @@ class PlanView extends View {
       const btn = e.target.closest('.plan__closeBtn');
       if (!btn) return;
       const dayId = btn.dataset.id;
-      console.log(dayId);
       handler(dayId);
     });
   }
