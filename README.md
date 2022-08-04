@@ -19,8 +19,8 @@ Projekt jest elementem kursu "The Complete JavaScript Course 2022: From Zero to 
 - wyszukiwarka przepisów po tagach dzięki zewnętrznemu API
 - renderowanie przepisów na liście oraz paginacja
 - ustawienie ilości porcji i składników
-- możliwość dodwania własnych przepisów do API
-- dodawanie potraw do ulubinych (bookmarks) oraz wyświetlanie ich na liście
+- możliwość dodawania własnych przepisów do API
+- dodawanie potraw do ulubinych (bookmarks), wyświetlanie ich na liście oraz zapis w pamięciu przeglądarki
 
 ### Elementy projektu dodane przeze mnie:
 
@@ -51,6 +51,8 @@ Projekt jest elementem kursu "The Complete JavaScript Course 2022: From Zero to 
 
 - łączenie z zewnętrznym API EDAMAM w celu pobrania informacji o składnikach
 - renderowanie wyników i sumowanie ilości kalorii zawartych w przepisie
+
+6. Zapisanie stanu planu i listy zakupów w pamięci przeglądaki
 
 #### Komendy
 
