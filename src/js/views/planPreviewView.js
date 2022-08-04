@@ -26,7 +26,7 @@ class PreviewView extends View {
           ? 'Tomorrow'
           : this._data.day
       }</span><span class="plan__date--date">${this._data.dayId}</span></div>
-        <div class="preview plan__empty" data-id="${recipeParse.id}">
+        <div class="preview plan__fig" data-id="${recipeParse.id}">
             <a class="preview__link" href="#${recipeParse.id}">
               <figure class="preview__fig">
                 <img src="${recipeParse.image}" alt="${recipeParse.title}" />

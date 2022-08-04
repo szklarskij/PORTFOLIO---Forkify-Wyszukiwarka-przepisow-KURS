@@ -10,6 +10,8 @@ Projekt jest elementem kursu "The Complete JavaScript Course 2022: From Zero to 
 - html
 - sass
 - npm fractional
+- forkify API
+- Edamam API
 
 ### Elementy projektu zawarte w kusie:
 
@@ -45,6 +47,11 @@ Projekt jest elementem kursu "The Complete JavaScript Course 2022: From Zero to 
 - nowe przyciski stron
 - możliwość sortowania przepisów
 
+5. Sprawdzenie ilości kalorii
+
+- łączenie z zewnętrznym API EDAMAM w celu pobrania informacji o składnikach
+- renderowanie wyników i sumowanie ilości kalorii zawartych w przepisie
+
 #### Komendy
 
 ```
@@ -56,6 +63,7 @@ npm start
 
 - Jakub Szklarski
 - Jonas Schmedtmann
+- EDAMAM
 
 ### Kontakt
 
