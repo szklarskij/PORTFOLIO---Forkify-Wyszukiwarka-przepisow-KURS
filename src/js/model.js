@@ -276,23 +276,16 @@ export const deleteRecipeFromPlan = function (date) {
 };
 
 export const getRecipesFromPlanToShoppingList = function (dates) {
-  // console.log(state.days);
   const dateArr = dates;
   state.shoppingList = [];
   let recipeList = [];
   let recipeListArr = [];
   let shoppingList = [];
 
-  // state.days.forEach(day => {
-  //   dateArr.push(day.recipe[0]);
-  // });
-  // console.log(dateArr);
-
-  // let dateArr = [];
   dateArr.forEach(date => {
     const dayMatch = state.days.find(y => y.dayId === date);
     if (!dayMatch) return;
-    const recipeFromDay = [dayMatch.recipe[0], dayMatch.servings];
+    const recipeFromDay = [JSON.parse(dayMatch.recipe[0]), dayMatch.servings];
 
     if (recipeListArr.length === 0) {
       recipeListArr.push(recipeFromDay);
@@ -311,18 +304,14 @@ export const getRecipesFromPlanToShoppingList = function (dates) {
       }
     }
   });
+
   //aodaj do shoppingList
   recipeListArr.forEach(r => {
     r[0].servings = r[1];
     recipeList.push(r[0]);
   });
-  const recipeListFix = [];
-  recipeList.forEach(recipe => {
-    const recipeFix = JSON.parse(recipe);
-    recipeListFix.push(recipeFix);
-  });
 
-  recipeListFix.forEach(recipe => {
+  recipeList.forEach(recipe => {
     recipe.servingsShoppingList = recipe.servings;
 
     recipe.ingredientsShoppingList = JSON.parse(
@@ -348,7 +337,7 @@ export const getRecipesFromPlanToShoppingList = function (dates) {
 
   state.ingredientsToAdd = shoppingList;
 
-  state.shoppingList = recipeListFix;
+  state.shoppingList = recipeList;
 
   persistShoppingList();
 };
