@@ -2,7 +2,7 @@ import * as model from './model.js';
 import { MODAL_CLOSE_SEC } from './config.js';
 import recipeView from './views/recipeView.js';
 // import View from './views/view.js';
-
+import nutriView from './views/nutriView.js';
 import planView from './views/planView.js';
 import sortView from './views/sortView.js';
 import searchView from './views/searchView.js';
@@ -205,9 +205,39 @@ const controlPlan = function () {
 
 const controlPlanAddRecipesToShoppingList = function (recipes) {
   // console.log(model.state.days);
+  // console.log(recipes);
   model.getRecipesFromPlanToShoppingList(recipes);
   shoppingListView._status = model.state.shoppingList.length;
 };
+
+const controlNutri = async function () {
+  try {
+    nutriView.totalCal = 0;
+    nutriView.clearIngs();
+    nutriView.openWindow();
+    // nutriView.render(model.state.recipe.ingredients);
+    // nutriView.renderSpinner();
+
+    for (const ing of model.state.recipe.ingredients) {
+      const dataAPI = await model.getNutrii(ing);
+      nutriView.updateNutri(dataAPI, ing);
+    }
+  } catch (err) {
+    nutriView.renderError();
+  }
+  // for (const ingredient of model.state.recipe.ingredients) {
+  // console.log(element);
+  // await model.state.recipe.ingredients.forEach(ing => {
+  //   nutriView.updateNutri(model.getNutri(ing));
+  // });
+
+  // console.log(nutri);
+};
+
+// const updateNutri = function (ing) {
+//   // nutriView.updateNutri(ing);
+//   console.log(ing);
+// };
 
 const init = function () {
   // shoppingListView.addHandlerRender(controlShoppingList);
@@ -231,6 +261,8 @@ const init = function () {
   addRecipeView.addHandlerUpload(controlAddRecipe);
   addRecipeView.addHandlerAddIng(controlAddIng);
   addRecipeView.addHandlerRemoveIng(controlRemoveIng);
+
+  recipeView.addHandlerCheckNutri(controlNutri);
 };
 init();
 // window.addEventListener('hashchange', controlRecipes);

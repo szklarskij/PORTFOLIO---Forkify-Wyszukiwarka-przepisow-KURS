@@ -6,10 +6,10 @@ Projekt jest elementem kursu "The Complete JavaScript Course 2022: From Zero to 
 
 #### Użyte technologie:
 
--vanilla javascript
--html
--sass
--npm fractional
+- vanilla javascript
+- html
+- sass
+- npm fractional
 
 ### Elementy projektu zawarte w kusie:
 
@@ -54,8 +54,8 @@ npm start
 
 ### Przypisy
 
-Jakub Szklarski
-Jonas Schmedtmann
+- Jakub Szklarski
+- Jonas Schmedtmann
 
 ### Kontakt
 

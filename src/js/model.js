@@ -1,6 +1,7 @@
-import { API_URL, RES_PER_PAGE, KEY, WEEKDAY } from './config.js';
+import { API_URL, RES_PER_PAGE, KEY, WEEKDAY, EDAMAM_URL } from './config.js';
 import { async } from 'regenerator-runtime';
 import { AJAX } from './helpers.js';
+import controller from './controller.js';
 
 // console.log(getJSON);
 export const state = {
@@ -206,7 +207,7 @@ export const getSearchResultsPage = function (page = state.search.page) {
 export const setSortType = function (sortType) {
   // if (sortType === 'duration')
   // state.search.sortby = ;
-  console.log(state.search.resultsUnsorted);
+
   if (sortType === 'none') {
     state.search.sortby = 'titleUp'; /////// TUTAJ ZACZAC SORTOWAC
     state.search.results.sort((a, b) => (a.title > b.title ? 1 : -1));
@@ -350,6 +351,20 @@ export const getRecipesFromPlanToShoppingList = function (dates) {
   state.shoppingList = recipeListFix;
 
   persistShoppingList();
+};
+
+export const getNutrii = async function (ing) {
+  try {
+    const data = await AJAX(
+      `${EDAMAM_URL}${ing.quantity ? ing.quantity : '1'}%20${
+        ing.unit ? ing.unit : ''
+      }%20${ing.description}`
+    );
+    return data;
+  } catch (err) {
+    console.error(`${err}🧨🧨🧨 `);
+    throw err;
+  }
 };
 
 const init = function () {

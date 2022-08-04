@@ -38,6 +38,19 @@ class RecipeView extends View {
       }.bind(this)
     );
   }
+
+  addHandlerCheckNutri(handler) {
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.nutri__btn');
+        if (!btn) return;
+        // console.log(this._data);
+        handler();
+      }.bind(this)
+    );
+  }
+
   addHandlerAddDay(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.days__field');
@@ -223,6 +236,12 @@ Today${
 
       
     </ul>
+
+    <button class="btn--small nutri__btn">
+    <span>Nutrition analysis
+    </span>
+    </button>
+
   </div>
 
   <div class="recipe__directions">

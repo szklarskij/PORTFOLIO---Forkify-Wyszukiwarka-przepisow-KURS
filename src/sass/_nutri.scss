@@ -1,0 +1,93 @@
+.nutri-window {
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70rem;
+  // height: 60rem;
+  background-color: white;
+  border-radius: 9px;
+
+  padding: 5rem 6rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: all 0.5s;
+
+  .btn--close-modal {
+    font-family: inherit;
+    color: inherit;
+    position: absolute;
+    top: 0.5rem;
+    right: 1.6rem;
+    font-size: 3.5rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+}
+// .shopping-list__heading--1 {
+//   grid-column: 1/2;
+// }
+// .shopping-list__heading--2 {
+//   grid-row: -1/1;
+//   grid-column: -2/-1;
+// }
+.nutri__container {
+  display: grid;
+  // gap: 2rem;
+  column-gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+.nutri__list {
+  list-style: none;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 30rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.nutri_list--el {
+  font-family: inherit;
+  border-bottom: 0.5px solid $color-grey-dark-2;
+
+  font-size: 2rem;
+}
+.nutri_list--div {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  // justify-content: space-between;
+  gap: 2rem;
+  // width: 1rem;
+}
+.nutri_list--cal {
+  justify-self: right;
+}
+.nutri__total {
+  display: flex;
+  font-size: 2.5rem;
+  font-family: inherit;
+  justify-content: center;
+  gap: 1rem;
+}
+// .plan__empty {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+// }
+
+// .plan__closeBtn {
+//   display: flex;
+//   align-self: center;
+//   align-items: center;
+//   font-family: inherit;
+//   color: inherit;
+//   font-size: 3.5rem;
+//   cursor: pointer;
+//   border: none;
+//   background: none;
+//   height: 3rem;
+// }
