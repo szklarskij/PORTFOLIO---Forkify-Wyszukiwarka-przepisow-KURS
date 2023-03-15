@@ -24,7 +24,7 @@ Elementy projektu zawarte w kursie:
 - renderowanie przepisów na liście oraz paginacja
 - ustawienie ilości porcji i składników
 - możliwość dodawania własnych przepisów do API
-- dodawanie potraw do ulubinych (bookmarks), wyświetlanie ich na liście oraz zapis w pamięciu przeglądarki
+- dodawanie potraw do ulubionych (bookmarks), wyświetlanie ich na liście oraz zapis w pamięci przeglądarki
 
 ### Elementy projektu dodane przeze mnie:
 
@@ -37,7 +37,7 @@ Elementy projektu zawarte w kursie:
 2. lista zakupów:
 
 - możliwość dodania składników z wybranego przepisu do listy z uwzględnieniem ilości porcji
-- modyfikacja ilości porcji na liście oraz bierzące przeliczanie składników
+- modyfikacja ilości porcji na liście oraz bieżące przeliczanie składników
 - wygenerowanie i skopiowanie sformatowanej listy zakupów do schowka
 - wyczyszczenie listy
 
@@ -56,7 +56,7 @@ Elementy projektu zawarte w kursie:
 - łączenie z zewnętrznym API EDAMAM w celu pobrania informacji o składnikach
 - renderowanie wyników i sumowanie ilości kalorii zawartych w przepisie
 
-6. Zapisanie stanu planu i listy zakupów w pamięci przeglądaki
+6. Zapisanie stanu planu i listy zakupów w pamięci przeglądarki
 
 #### Screenshots:
 
