@@ -1,19 +1,23 @@
-# Forkify Project
+# FORKIFY PROJECT
 
 ## Aplikacja do wyszukiwania przepisów kulinarnych.
 
-Projekt jest elementem kursu "The Complete JavaScript Course 2022: From Zero to Expert!". Autorem kursu jest Jonas Schmedtmann.
+https://forkify-jszklarski.netlify.app/ - link do hostowanej aplikacji na portalu Netlify
+
+Projekt jest ulepszoną wersją projektu zawartego w kursie "The Complete JavaScript Course 2022: From Zero to Expert!". Autorem kursu jest Jonas Schmedtmann.
+Jest to pierwsza większa aplikacja/strona mojego autorstwa.
 
 #### Użyte technologie:
 
 - vanilla javascript
 - html
 - sass
-- npm fractional
 - forkify API
 - Edamam API
 
-### Elementy projektu zawarte w kusie:
+### Funkcjonalność:
+
+Elementy projektu zawarte w kursie:
 
 - design strony
 - wyszukiwarka przepisów po tagach dzięki zewnętrznemu API
@@ -53,6 +57,32 @@ Projekt jest elementem kursu "The Complete JavaScript Course 2022: From Zero to 
 - renderowanie wyników i sumowanie ilości kalorii zawartych w przepisie
 
 6. Zapisanie stanu planu i listy zakupów w pamięci przeglądaki
+
+#### Screenshots:
+
+- strona główna
+
+<p align="center">
+  <img src="/src/screenshots/1.png" />
+</p>
+
+- dodawanie przepisu
+
+<p align="center">
+  <img src="/src/screenshots/2.png" />
+</p>
+
+- planowanie posiłków
+
+<p align="center">
+  <img src="/src/screenshots/3.png" />
+</p>
+
+- kalkulator kalorii
+
+<p align="center">
+  <img src="/src/screenshots/4.png" />
+</p>
 
 #### Komendy
 
