@@ -4,7 +4,7 @@
 
 https://forkify-jszklarski.netlify.app/ - link do hostowanej aplikacji na portalu Netlify
 
-Projekt jest ulepszoną wersją projektu zawartego w kursie "The Complete JavaScript Course 2022: From Zero to Expert!". Autorem kursu jest Jonas Schmedtmann.
+Strona jest ulepszoną wersją projektu zawartego w kursie "The Complete JavaScript Course 2022: From Zero to Expert!". Autorem kursu jest Jonas Schmedtmann.
 Jest to pierwsza większa aplikacja/strona mojego autorstwa.
 
 #### Użyte technologie:
