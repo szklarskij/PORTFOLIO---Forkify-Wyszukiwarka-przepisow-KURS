@@ -28,25 +28,25 @@ Elementy projektu zawarte w kursie:
 
 ### Elementy projektu dodane przeze mnie:
 
-1. plan przepisów:
+1. Plan przepisów:
 
 - możliwość przypisania przepisów do następnych siedmiu dni
 - wygenerowanie i skopiowanie planu do schowka
 - dodanie wszystkich składników potraw z planu do listy zakupów
 
-2. lista zakupów:
+2. Lista zakupów:
 
 - możliwość dodania składników z wybranego przepisu do listy z uwzględnieniem ilości porcji
 - modyfikacja ilości porcji na liście oraz bieżące przeliczanie składników
 - wygenerowanie i skopiowanie sformatowanej listy zakupów do schowka
 - wyczyszczenie listy
 
-3. ulepszenie funkcji dodania nowych przepisów
+3. Ulepszenie funkcji dodania nowych przepisów
 
 - dodawanie oraz usuwanie nowych składników z tymczasowej listy przed wgraniem przepisu
 - ulepszony formularz
 
-4. ulepszona paginacja
+4. Ulepszona paginacja
 
 - nowe przyciski stron
 - możliwość sortowania przepisów
